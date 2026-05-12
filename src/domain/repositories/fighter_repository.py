@@ -12,17 +12,6 @@ from .base_repository import BaseRepository
 
 
 class FighterRepository(BaseRepository[Fighter]):
-    """
-    Repository for the Fighter aggregate root.
-
-    In addition to standard CRUD, exposes:
-      - get_by_last_name()
-      - get_by_belt_level()
-      - get_by_country()
-      - get_paginated()
-      - add_medical_record()
-      - approve_registration()
-    """
 
     def __init__(self, session: Session) -> None:
         super().__init__(session, Fighter)
@@ -54,16 +43,6 @@ class FighterRepository(BaseRepository[Fighter]):
     # ── Pagination (Fighter has the highest expected row count) ───────────────
 
     def get_paginated(self, page: int = 1, page_size: int = 10) -> List[Fighter]:
-        """
-        Return a page of fighters ordered by last_name, first_name.
-
-        Args:
-            page:      1-based page index.
-            page_size: Number of records per page.
-
-        Returns:
-            A list of Fighter instances for the requested page.
-        """
         offset = (page - 1) * page_size
         stmt = (
             select(Fighter)
@@ -90,11 +69,7 @@ class FighterRepository(BaseRepository[Fighter]):
         conditions: Optional[str] = None,
         doctor_name: Optional[str] = None,
     ) -> MedicalRecord:
-        """
-        Create and attach a MedicalRecord to an existing Fighter.
-
-        Raises ValueError if the fighter does not exist or already has a record.
-        """
+        
         fighter = self.get(fighter_id)
         if fighter is None:
             raise ValueError(f"Fighter with id={fighter_id} not found.")
@@ -119,11 +94,7 @@ class FighterRepository(BaseRepository[Fighter]):
         category_id: int,
         tournament_id: int,
     ) -> FighterCategoryRegistration:
-        """
-        Mark a fighter's category registration as approved.
-
-        Raises ValueError if the registration does not exist.
-        """
+        
         stmt = select(FighterCategoryRegistration).where(
             FighterCategoryRegistration.fighter_id == fighter_id,
             FighterCategoryRegistration.category_id == category_id,

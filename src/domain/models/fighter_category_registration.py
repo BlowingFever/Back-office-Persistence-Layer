@@ -15,12 +15,6 @@ if TYPE_CHECKING:
 
 
 class FighterCategoryRegistration(Base):
-    """
-    Association object: registers a fighter in a category for a specific tournament.
-
-    This is an N:M with attributes (weight_in_weight_kg, registration_date,
-    is_approved).
-    """
 
     __tablename__ = "fighter_category_registration"
 

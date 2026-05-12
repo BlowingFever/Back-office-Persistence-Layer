@@ -10,11 +10,6 @@ T = TypeVar("T", bound=Base)
 
 
 class BaseRepository(Generic[T]):
-    """
-    Generic repository providing basic CRUD for any ORM model.
-
-    Concrete repositories subclass this and may add domain-specific queries.
-    """
 
     def __init__(self, session: Session, model: Type[T]) -> None:
         self._session = session

@@ -1,11 +1,5 @@
 """
 Database configuration module.
-
-Reads APP_ENV to select the right connection URL.
-Supported environments:
-  - test        → SQLite (local, for unit tests)
-  - development → PostgreSQL online
-  - production  → PostgreSQL online
 """
 
 import os

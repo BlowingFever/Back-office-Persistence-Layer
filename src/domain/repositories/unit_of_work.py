@@ -1,11 +1,5 @@
 """
 Unit of Work — manages a single database session shared across all repositories.
-
-Usage:
-    with UnitOfWork() as uow:
-        fighter = Fighter(first_name="Ana", last_name="Doe", ...)
-        uow.fighters.add(fighter)
-        uow.commit()
 """
 
 from __future__ import annotations
@@ -21,13 +15,6 @@ from .registration_repository import RegistrationRepository
 
 
 class UnitOfWork:
-    """
-    Context manager that groups all repositories under one SQLAlchemy session.
-
-    - Enter  → creates session + repositories
-    - Commit → flushes and commits
-    - Exit   → rolls back on exception; closes session always
-    """
 
     def __init__(self, session_factory=None) -> None:
         self._session_factory = session_factory or get_session_factory()
@@ -53,4 +40,4 @@ class UnitOfWork:
         if exc_type is not None:
             self.rollback()
         self._session.close()
-        return False  # don't suppress exceptions
+        return False

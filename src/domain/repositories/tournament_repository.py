@@ -12,15 +12,6 @@ from .base_repository import BaseRepository
 
 
 class TournamentRepository(BaseRepository[Tournament]):
-    """
-    Repository for the Tournament aggregate root.
-
-    Domain-specific queries:
-      - get_by_name()
-      - get_by_location()
-      - get_active_tournaments()
-      - add_tatami_to_tournament()
-    """
 
     def __init__(self, session: Session) -> None:
         super().__init__(session, Tournament)
@@ -65,11 +56,7 @@ class TournamentRepository(BaseRepository[Tournament]):
         area_size: Optional[float] = None,
         is_active: bool = True,
     ) -> Tatami:
-        """
-        Create a new Tatami and attach it to an existing Tournament.
 
-        Raises ValueError if the tournament does not exist.
-        """
         tournament = self.get(tournament_id)
         if tournament is None:
             raise ValueError(f"Tournament with id={tournament_id} not found.")

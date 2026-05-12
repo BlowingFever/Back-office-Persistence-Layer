@@ -10,15 +10,6 @@ from .base_repository import BaseRepository
 
 
 class MatchRepository(BaseRepository[Match]):
-    """
-    Repository for Match.
-
-    Domain-specific queries:
-      - get_by_tournament()
-      - get_by_fighter()
-      - get_by_category()
-      - get_by_round()
-    """
 
     def __init__(self, session: Session) -> None:
         super().__init__(session, Match)

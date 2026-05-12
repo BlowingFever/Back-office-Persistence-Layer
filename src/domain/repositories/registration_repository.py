@@ -10,24 +10,12 @@ from .base_repository import BaseRepository
 
 
 class RegistrationRepository(BaseRepository[FighterCategoryRegistration]):
-    """
-    Repository for FighterCategoryRegistration (N:M with attributes).
-
-    The composite PK is (fighter_id, category_id, tournament_id), so
-    get() uses a tuple rather than a single integer.
-    """
 
     def __init__(self, session: Session) -> None:
         super().__init__(session, FighterCategoryRegistration)
 
     # Override get to handle composite PK
-    def get(self, pk) -> Optional[FighterCategoryRegistration]:  # type: ignore[override]
-        """
-        Retrieve by composite PK.
-
-        Args:
-            pk: A tuple (fighter_id, category_id, tournament_id).
-        """
+    def get(self, pk) -> Optional[FighterCategoryRegistration]:
         fighter_id, category_id, tournament_id = pk
         stmt = select(FighterCategoryRegistration).where(
             FighterCategoryRegistration.fighter_id == fighter_id,

@@ -1,9 +1,4 @@
 """Added last_update attribute
-
-Revision ID: 002_add_last_update
-Revises: 001_initial_schema
-Create Date: 2026-03-02 10:00:00.000000
-
 """
 from typing import Sequence, Union
 

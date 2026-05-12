@@ -10,15 +10,6 @@ from .base_repository import BaseRepository
 
 
 class CategoryRepository(BaseRepository[Category]):
-    """
-    Repository for Category.
-
-    Domain-specific queries:
-      - get_by_name()
-      - get_by_belt_level()
-      - get_by_gender()
-      - get_by_weight_range()
-    """
 
     def __init__(self, session: Session) -> None:
         super().__init__(session, Category)

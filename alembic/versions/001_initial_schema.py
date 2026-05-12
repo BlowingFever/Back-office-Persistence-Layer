@@ -1,9 +1,4 @@
 """Initial schema creation
-
-Revision ID: 001_initial_schema
-Revises: 
-Create Date: 2026-03-01 10:00:00.000000
-
 """
 from typing import Sequence, Union
 
